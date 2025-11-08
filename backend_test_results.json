@@ -1,0 +1,81 @@
+{
+  "summary": {
+    "total_tests": 12,
+    "passed_tests": 12,
+    "success_rate": 100.0
+  },
+  "detailed_results": [
+    {
+      "test": "User Registration",
+      "status": "PASS",
+      "details": "Status: 200 | Response: {\n  \"user\": {\n    \"id\": \"786e4774-885b-4f2b-ac1b-6824d9f85b45\",\n    \"name\": \"Test User 161627\",\n    \"email\": \"test161627@terraquest.com\",\n    \"ecoScore\": 0,\n    \"level\": \"Eco Rookie\",\n    \"totalScans\"...",
+      "timestamp": "2025-11-08T16:16:27.601750"
+    },
+    {
+      "test": "Get All Products",
+      "status": "PASS",
+      "details": "Status: 200 | Response: [\n  {\n    \"barcode\": \"1001\",\n    \"name\": \"Coca-Cola\",\n    \"carbonFootprint\": 65,\n    \"recyclable\": false,\n    \"ethicalScore\": 40,\n    \"sustainabilityScore\": 45,\n    \"brand\": \"Coca-Cola\",\n    \"category...",
+      "timestamp": "2025-11-08T16:16:27.648020"
+    },
+    {
+      "test": "Mock Products Validation",
+      "status": "PASS",
+      "details": "Found all 8 expected products",
+      "timestamp": "2025-11-08T16:16:27.648651"
+    },
+    {
+      "test": "Get Single Product (barcode 1001)",
+      "status": "PASS",
+      "details": "Status: 200 | Response: {\n  \"barcode\": \"1001\",\n  \"name\": \"Coca-Cola\",\n  \"carbonFootprint\": 65,\n  \"recyclable\": false,\n  \"ethicalScore\": 40,\n  \"sustainabilityScore\": 45,\n  \"brand\": \"Coca-Cola\",\n  \"category\": \"Beverages\"\n}...",
+      "timestamp": "2025-11-08T16:16:27.688249"
+    },
+    {
+      "test": "Scan Product",
+      "status": "PASS",
+      "details": "Status: 200 | Response: {\n  \"scan\": {\n    \"id\": \"e8e42605-b9d0-4e3a-a64f-e8b09822ddce\",\n    \"userId\": \"786e4774-885b-4f2b-ac1b-6824d9f85b45\",\n    \"productBarcode\": \"1001\",\n    \"productName\": \"Coca-Cola\",\n    \"score\": 45,\n   ...",
+      "timestamp": "2025-11-08T16:16:27.797920"
+    },
+    {
+      "test": "Get User Scans",
+      "status": "PASS",
+      "details": "Status: 200 | Response: [\n  {\n    \"id\": \"e8e42605-b9d0-4e3a-a64f-e8b09822ddce\",\n    \"userId\": \"786e4774-885b-4f2b-ac1b-6824d9f85b45\",\n    \"productBarcode\": \"1001\",\n    \"productName\": \"Coca-Cola\",\n    \"score\": 45,\n    \"scanne...",
+      "timestamp": "2025-11-08T16:16:27.837366"
+    },
+    {
+      "test": "Get Leaderboard",
+      "status": "PASS",
+      "details": "Status: 200 | Response: [\n  {\n    \"id\": \"786e4774-885b-4f2b-ac1b-6824d9f85b45\",\n    \"name\": \"Test User 161627\",\n    \"email\": \"test161627@terraquest.com\",\n    \"ecoScore\": 45,\n    \"level\": \"Eco Rookie\",\n    \"totalScans\": 1,\n  ...",
+      "timestamp": "2025-11-08T16:16:27.880339"
+    },
+    {
+      "test": "Get Challenges",
+      "status": "PASS",
+      "details": "Status: 200 | Response: [\n  {\n    \"id\": \"c1\",\n    \"title\": \"Eco Starter\",\n    \"description\": \"Scan 5 eco-friendly products this week\",\n    \"requirement\": \"5 scans with score > 70\",\n    \"reward\": 100,\n    \"icon\": \"leaf\"\n  },\n...",
+      "timestamp": "2025-11-08T16:16:27.935702"
+    },
+    {
+      "test": "Mock Challenges Validation",
+      "status": "PASS",
+      "details": "Found all 3 expected challenges",
+      "timestamp": "2025-11-08T16:16:27.936514"
+    },
+    {
+      "test": "Get Rewards",
+      "status": "PASS",
+      "details": "Status: 200 | Response: [\n  {\n    \"id\": \"r1\",\n    \"name\": \"Plant a Tree\",\n    \"ngoName\": \"GreenEarth Foundation\",\n    \"description\": \"Fund one tree plantation\",\n    \"pointsRequired\": 500,\n    \"icon\": \"tree-pine\"\n  },\n  {\n   ...",
+      "timestamp": "2025-11-08T16:16:27.971489"
+    },
+    {
+      "test": "Mock Rewards Validation",
+      "status": "PASS",
+      "details": "Found all 4 expected rewards",
+      "timestamp": "2025-11-08T16:16:27.972154"
+    },
+    {
+      "test": "Get User Profile",
+      "status": "PASS",
+      "details": "Status: 200 | Response: {\n  \"id\": \"786e4774-885b-4f2b-ac1b-6824d9f85b45\",\n  \"name\": \"Test User 161627\",\n  \"email\": \"test161627@terraquest.com\",\n  \"ecoScore\": 45,\n  \"level\": \"Eco Rookie\",\n  \"totalScans\": 1,\n  \"createdAt\": \"20...",
+      "timestamp": "2025-11-08T16:16:28.048990"
+    }
+  ]
+}
