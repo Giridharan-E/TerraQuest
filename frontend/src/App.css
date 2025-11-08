@@ -8,7 +8,7 @@
 
 body {
   font-family: 'Manrope', sans-serif;
-  background: #ffffff;
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 50%, #a5d6a7 100%);
   min-height: 100vh;
 }
 
@@ -21,70 +21,71 @@ h1, h2, h3 {
 }
 
 .eco-gradient {
-  background: #3bb273;
+  background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
 }
 
 .score-card {
-  background: #ffffff;
-  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(46, 125, 50, 0.1);
   border-radius: 16px;
-  box-shadow: 0 1px 3px rgba(59, 178, 115, 0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 8px 32px rgba(46, 125, 50, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .score-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 178, 115, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(46, 125, 50, 0.2);
 }
 
 .btn-primary {
-  background: #3bb273;
+  background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
   border: none;
   border-radius: 12px;
   padding: 12px 24px;
   color: white;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn-primary:hover {
-  background: #2fa165;
-  box-shadow: 0 4px 12px rgba(59, 178, 115, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(46, 125, 50, 0.3);
 }
 
 .glass-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  box-shadow: 0 1px 3px rgba(59, 178, 115, 0.1);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
 }
 
 .text-eco {
-  color: #3bb273;
+  color: #2e7d32;
 }
 
 .sustainability-low {
-  color: #ef4444;
+  color: #d32f2f;
 }
 
 .sustainability-medium {
-  color: #f97316;
+  color: #f57c00;
 }
 
 .sustainability-high {
-  color: #3bb273;
+  color: #2e7d32;
 }
 
 .level-badge {
   background: linear-gradient(135deg, #ffd700 0%, #ffb300 100%);
   color: #1b5e20;
-  padding: 6px 12px;
-  border-radius: 20px;
+  padding: 8px 16px;
+  border-radius: 24px;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   display: inline-block;
-  box-shadow: 0 2px 8px rgba(255, 215, 0, 0.2);
+  box-shadow: 0 4px 16px rgba(255, 215, 0, 0.3);
 }
 
 .nav-link {

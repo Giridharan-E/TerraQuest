@@ -60,28 +60,28 @@ const ScanProduct = () => {
   };
 
   const getScoreCategory = (score) => {
-    if (score >= 70) return { label: 'Excellent', colorStyle: {color: '#3bb273'}, bgStyle: {background: '#f0fdf4'} };
-    if (score >= 50) return { label: 'Good', colorStyle: {color: '#f97316'}, bgStyle: {background: '#ffedd5'} };
-    return { label: 'Poor', colorStyle: {color: '#ef4444'}, bgStyle: {background: '#fee2e2'} };
+    if (score >= 70) return { label: 'Excellent', color: 'text-green-600', bg: 'bg-green-100' };
+    if (score >= 50) return { label: 'Good', color: 'text-orange-500', bg: 'bg-orange-100' };
+    return { label: 'Poor', color: 'text-red-600', bg: 'bg-red-100' };
   };
 
   return (
-    <div className="min-h-screen" style={{background: 'linear-gradient(to bottom, #f0fdf4, #ffffff)'}} data-testid="scan-product-page">
+    <div className="min-h-screen" data-testid="scan-product-page">
       <Navigation />
-
-      <div className="max-w-md mx-auto px-4 md:px-6 py-6 pb-24 md:pb-6">
-        <div className="mb-6">
-          <h1 className="text-2xl font-semibold text-gray-900 mb-1">
+      
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <div className="glass-card p-8 mb-8 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl font-bold text-green-800 mb-2" style={{fontFamily: 'Space Grotesk'}}>
             Scan a Product
           </h1>
-          <p className="text-sm text-gray-600 leading-relaxed">Discover the sustainability impact of your choices</p>
+          <p className="text-green-700 text-base">Discover the sustainability impact of your choices</p>
         </div>
 
         {/* Scan Interface */}
-        <div className="bg-white rounded-2xl shadow-sm p-4 mb-6" style={{boxShadow: '0 1px 3px rgba(59,178,115,0.1)'}}>
-          <div className="space-y-4">
+        <div className="glass-card p-8 mb-8">
+          <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-800 mb-2">Enter Barcode</label>
+              <label className="block text-green-800 font-semibold mb-2">Enter Barcode</label>
               <Input
                 data-testid="barcode-input"
                 type="text"
@@ -91,23 +91,23 @@ const ScanProduct = () => {
                   setSelectedBarcode('');
                 }}
                 placeholder="Enter product barcode (e.g., 1001)"
-                className="border-gray-200 focus:border-green-500 rounded-lg"
+                className="border-green-300 focus:border-green-500"
               />
             </div>
 
-            <div className="flex items-center gap-3">
-              <div className="flex-1 border-t border-gray-200"></div>
-              <span className="text-sm text-gray-600">OR</span>
-              <div className="flex-1 border-t border-gray-200"></div>
+            <div className="flex items-center gap-4">
+              <div className="flex-1 border-t border-green-300"></div>
+              <span className="text-green-600 font-medium">OR</span>
+              <div className="flex-1 border-t border-green-300"></div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-800 mb-2">Select from List</label>
+              <label className="block text-green-800 font-semibold mb-2">Select from List</label>
               <Select value={selectedBarcode} onValueChange={(value) => {
                 setSelectedBarcode(value);
                 setBarcode('');
               }}>
-                <SelectTrigger className="border-gray-200 rounded-lg" data-testid="product-select">
+                <SelectTrigger className="border-green-300" data-testid="product-select">
                   <SelectValue placeholder="Choose a product" />
                 </SelectTrigger>
                 <SelectContent>
@@ -120,11 +120,10 @@ const ScanProduct = () => {
               </Select>
             </div>
 
-            <Button
-              onClick={handleScan}
+            <Button 
+              onClick={handleScan} 
               disabled={loading || (!barcode && !selectedBarcode)}
-              className="w-full py-6 text-white font-semibold rounded-xl transition-all"
-              style={{background: loading || (!barcode && !selectedBarcode) ? '#9ca3af' : '#3bb273'}}
+              className="w-full btn-primary text-white py-6 text-lg"
               data-testid="scan-button"
             >
               <Scan className="mr-2 h-5 w-5" />
@@ -135,70 +134,72 @@ const ScanProduct = () => {
 
         {/* Scanned Product Result */}
         {scannedProduct && (
-          <div className="bg-white rounded-2xl shadow-sm p-4" style={{boxShadow: '0 1px 3px rgba(59,178,115,0.1)'}} data-testid="scanned-product-result">
-            <div className="flex justify-between items-start mb-4">
+          <div className="score-card p-8 animate-fade-in" data-testid="scanned-product-result">
+            <div className="flex justify-between items-start mb-6">
               <div>
-                <h2 className="text-lg font-medium text-gray-900 mb-1">
+                <h2 className="text-3xl font-bold text-green-800 mb-1" style={{fontFamily: 'Space Grotesk'}}>
                   {scannedProduct.name}
                 </h2>
-                <p className="text-sm text-gray-600">{scannedProduct.brand} • {scannedProduct.category}</p>
+                <p className="text-green-600">{scannedProduct.brand} • {scannedProduct.category}</p>
               </div>
               <div className="text-right">
-                <div className="text-3xl font-bold mb-1" style={getScoreCategory(scannedProduct.sustainabilityScore).colorStyle}>
+                <div className={`text-5xl font-bold mb-1 ${getScoreCategory(scannedProduct.sustainabilityScore).color}`}>
                   {scannedProduct.sustainabilityScore}
                 </div>
-                <span className="px-2 py-1 rounded-full text-xs font-semibold" style={{...getScoreCategory(scannedProduct.sustainabilityScore).bgStyle, ...getScoreCategory(scannedProduct.sustainabilityScore).colorStyle}}>
+                <span className={`px-3 py-1 rounded-full text-sm font-semibold ${getScoreCategory(scannedProduct.sustainabilityScore).bg} ${getScoreCategory(scannedProduct.sustainabilityScore).color}`}>
                   {getScoreCategory(scannedProduct.sustainabilityScore).label}
                 </span>
               </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 mb-4">
-              <div className="bg-gray-50 rounded-xl p-3">
-                <div className="flex items-center gap-2 mb-2">
-                  <Factory className="w-4 h-4" style={{color: '#3bb273'}} />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-white bg-opacity-50 rounded-lg p-4">
+                <div className="flex items-center gap-3 mb-2">
+                  <Factory className="w-5 h-5 text-green-700" />
+                  <span className="font-semibold text-green-800">Carbon Footprint</span>
                 </div>
-                <p className="text-xl font-bold text-gray-900">{scannedProduct.carbonFootprint}</p>
-                <p className="text-xs text-gray-600 mt-1">Carbon</p>
+                <p className="text-2xl font-bold text-green-900">{scannedProduct.carbonFootprint}</p>
+                <p className="text-xs text-green-600">CO₂ score (lower is better)</p>
               </div>
 
-              <div className="bg-gray-50 rounded-xl p-3">
-                <div className="flex items-center gap-2 mb-2">
-                  <Recycle className="w-4 h-4" style={{color: '#3bb273'}} />
+              <div className="bg-white bg-opacity-50 rounded-lg p-4">
+                <div className="flex items-center gap-3 mb-2">
+                  <Recycle className="w-5 h-5 text-green-700" />
+                  <span className="font-semibold text-green-800">Recyclable</span>
                 </div>
-                <p className="text-xl font-bold text-gray-900">{scannedProduct.recyclable ? 'Yes' : 'No'}</p>
-                <p className="text-xs text-gray-600 mt-1">Recycle</p>
+                <p className="text-2xl font-bold text-green-900">{scannedProduct.recyclable ? 'Yes' : 'No'}</p>
+                <p className="text-xs text-green-600">Material recyclability</p>
               </div>
 
-              <div className="bg-gray-50 rounded-xl p-3">
-                <div className="flex items-center gap-2 mb-2">
-                  <Award className="w-4 h-4" style={{color: '#3bb273'}} />
+              <div className="bg-white bg-opacity-50 rounded-lg p-4">
+                <div className="flex items-center gap-3 mb-2">
+                  <Award className="w-5 h-5 text-green-700" />
+                  <span className="font-semibold text-green-800">Ethical Score</span>
                 </div>
-                <p className="text-xl font-bold text-gray-900">{scannedProduct.ethicalScore}</p>
-                <p className="text-xs text-gray-600 mt-1">Ethical</p>
+                <p className="text-2xl font-bold text-green-900">{scannedProduct.ethicalScore}/100</p>
+                <p className="text-xs text-green-600">Fair trade & sourcing</p>
               </div>
             </div>
 
-            <div className="flex gap-3">
-              <Button
+            <div className="flex gap-4">
+              <Button 
                 onClick={() => {
                   setScannedProduct(null);
                   setBarcode('');
                   setSelectedBarcode('');
                 }}
                 variant="outline"
-                className="flex-1 py-3 rounded-xl border-gray-200 text-gray-700 font-medium"
+                className="flex-1 border-green-500 text-green-700 hover:bg-green-50"
                 data-testid="scan-another-button"
               >
                 Scan Another
               </Button>
-              <Button
+              <Button 
                 onClick={() => navigate('/')}
-                className="flex-1 py-3 text-white font-semibold rounded-xl"
-                style={{background: '#3bb273'}}
+                className="flex-1 btn-primary text-white"
                 data-testid="back-to-dashboard-button"
               >
-                Dashboard
+                Back to Dashboard
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </div>

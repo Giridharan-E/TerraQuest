@@ -23,49 +23,47 @@ const Challenges = () => {
 
   const getIcon = (iconName) => {
     const icons = {
-      leaf: <Leaf className="w-8 h-8" style={{color: '#3bb273'}} />,
-      recycle: <Recycle className="w-8 h-8" style={{color: '#3bb273'}} />,
-      trophy: <Trophy className="w-8 h-8" style={{color: '#3bb273'}} />
+      leaf: <Leaf className="w-12 h-12 text-green-600" />,
+      recycle: <Recycle className="w-12 h-12 text-green-600" />,
+      trophy: <Trophy className="w-12 h-12 text-green-600" />
     };
-    return icons[iconName] || <Target className="w-8 h-8" style={{color: '#3bb273'}} />;
+    return icons[iconName] || <Target className="w-12 h-12 text-green-600" />;
   };
 
   return (
-    <div className="min-h-screen" style={{background: 'linear-gradient(to bottom, #f0fdf4, #ffffff)'}} data-testid="challenges-page">
+    <div className="min-h-screen" data-testid="challenges-page">
       <Navigation />
-
-      <div className="max-w-md mx-auto px-4 md:px-6 py-6 pb-24 md:pb-6">
-        <div className="mb-6">
-          <h1 className="text-2xl font-semibold text-gray-900 mb-1">
+      
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className="glass-card p-8 mb-8 animate-fade-in">
+          <h1 className="text-4xl md:text-5xl font-bold text-green-800 mb-2" style={{fontFamily: 'Space Grotesk'}}>
             Eco Challenges
           </h1>
-          <p className="text-sm text-gray-600 leading-relaxed">Complete challenges and earn bonus rewards</p>
+          <p className="text-green-700 text-base">Complete challenges and earn bonus rewards</p>
         </div>
 
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {challenges.map((challenge, idx) => (
-            <div key={challenge.id} className="bg-white rounded-2xl shadow-sm p-4" style={{boxShadow: '0 1px 3px rgba(59,178,115,0.1)'}} data-testid={`challenge-${idx}`}>
-              <div className="flex items-start gap-3 mb-4">
+            <div key={challenge.id} className="score-card p-6 animate-fade-in" style={{ animationDelay: `${idx * 0.1}s` }} data-testid={`challenge-${idx}`}>
+              <div className="flex items-start gap-4 mb-4">
                 <div className="flex-shrink-0">
-                  <div className="w-14 h-14 rounded-xl flex items-center justify-center" style={{background: '#f0fdf4'}}>
-                    {getIcon(challenge.icon)}
-                  </div>
+                  {getIcon(challenge.icon)}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-lg font-medium text-gray-900 mb-1">
+                  <h3 className="text-2xl font-bold text-green-800 mb-2" style={{fontFamily: 'Space Grotesk'}}>
                     {challenge.title}
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed mb-3">{challenge.description}</p>
-                  <div className="bg-gray-50 rounded-lg p-3 mb-3">
-                    <p className="text-sm text-gray-700">{challenge.requirement}</p>
+                  <p className="text-green-700 mb-4">{challenge.description}</p>
+                  <div className="bg-white bg-opacity-50 rounded-lg p-3 mb-4">
+                    <p className="text-sm text-green-800 font-medium">📋 {challenge.requirement}</p>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Gift className="w-4 h-4" style={{color: '#fbbf24'}} />
-                      <span className="text-sm font-semibold text-gray-900">+{challenge.reward} pts</span>
+                      <Gift className="w-5 h-5 text-green-600" />
+                      <span className="text-lg font-bold text-green-800">+{challenge.reward} points</span>
                     </div>
-                    <Button className="px-4 py-2 text-white font-semibold rounded-xl" style={{background: '#3bb273'}} data-testid={`accept-challenge-${idx}`}>
-                      Accept
+                    <Button className="btn-primary text-white" data-testid={`accept-challenge-${idx}`}>
+                      Accept Challenge
                     </Button>
                   </div>
                 </div>
@@ -75,16 +73,16 @@ const Challenges = () => {
         </div>
 
         {/* Mock Google Maps Section */}
-        <div className="bg-white rounded-2xl shadow-sm p-4 mt-6" style={{boxShadow: '0 1px 3px rgba(59,178,115,0.1)'}}>
-          <h2 className="text-lg font-medium text-gray-800 mb-2">
+        <div className="glass-card p-8 mt-8">
+          <h2 className="text-3xl font-bold text-green-800 mb-4" style={{fontFamily: 'Space Grotesk'}}>
             Find Eco-Friendly Stores
           </h2>
-          <p className="text-sm text-gray-600 leading-relaxed mb-4">Discover sustainable shopping locations near you</p>
-          <div className="bg-gray-50 rounded-xl h-64 flex items-center justify-center border border-gray-200" data-testid="map-placeholder">
+          <p className="text-green-700 mb-6">Discover sustainable shopping locations near you</p>
+          <div className="bg-green-100 rounded-lg h-96 flex items-center justify-center border-2 border-green-300" data-testid="map-placeholder">
             <div className="text-center">
-              <Target className="w-12 h-12 mx-auto mb-3" style={{color: '#3bb273'}} />
-              <p className="text-base font-medium text-gray-900">Interactive Map</p>
-              <p className="text-sm text-gray-600 mt-1">Google Maps integration</p>
+              <Target className="w-16 h-16 text-green-600 mx-auto mb-4" />
+              <p className="text-green-800 font-semibold text-lg">Interactive Map</p>
+              <p className="text-green-600 text-sm mt-2">Google Maps integration would show eco-stores here</p>
             </div>
           </div>
         </div>
