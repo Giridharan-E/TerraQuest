@@ -25,12 +25,12 @@ const Rewards = () => {
 
   const getIcon = (iconName) => {
     const icons = {
-      'tree-pine': <TreePine className="w-12 h-12 text-green-600" />,
-      'shopping-bag': <ShoppingBag className="w-12 h-12 text-green-600" />,
-      'waves': <Waves className="w-12 h-12 text-blue-600" />,
-      'sprout': <Sprout className="w-12 h-12 text-green-600" />
+      'tree-pine': <TreePine className="w-8 h-8" style={{color: '#3bb273'}} />,
+      'shopping-bag': <ShoppingBag className="w-8 h-8" style={{color: '#3bb273'}} />,
+      'waves': <Waves className="w-8 h-8" style={{color: '#3b82f6'}} />,
+      'sprout': <Sprout className="w-8 h-8" style={{color: '#3bb273'}} />
     };
-    return icons[iconName] || <Gift className="w-12 h-12 text-green-600" />;
+    return icons[iconName] || <Gift className="w-8 h-8" style={{color: '#3bb273'}} />;
   };
 
   const handleRedeem = (reward) => {
@@ -42,55 +42,58 @@ const Rewards = () => {
   };
 
   return (
-    <div className="min-h-screen" data-testid="rewards-page">
+    <div className="min-h-screen" style={{background: 'linear-gradient(to bottom, #f0fdf4, #ffffff)'}} data-testid="rewards-page">
       <Navigation />
-      
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="glass-card p-8 mb-8 animate-fade-in">
-          <div className="flex justify-between items-start">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-green-800 mb-2" style={{fontFamily: 'Space Grotesk'}}>
-                Rewards Store
-              </h1>
-              <p className="text-green-700 text-base">Redeem your EcoPoints for real-world impact</p>
-            </div>
+
+      <div className="max-w-md mx-auto px-4 md:px-6 py-6 pb-24 md:pb-6">
+        <div className="mb-6">
+          <div className="flex justify-between items-start mb-1">
+            <h1 className="text-2xl font-semibold text-gray-900">
+              Rewards Store
+            </h1>
             <div className="text-right">
-              <p className="text-sm text-green-600 mb-1">Your EcoScore</p>
-              <p className="text-4xl font-bold text-green-800" data-testid="user-ecoscore-display">{user?.ecoScore}</p>
+              <p className="text-xs text-gray-600">Your Score</p>
+              <p className="text-xl font-bold text-gray-900" data-testid="user-ecoscore-display">{user?.ecoScore}</p>
             </div>
           </div>
+          <p className="text-sm text-gray-600 leading-relaxed">Redeem your EcoPoints for real-world impact</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-4">
           {rewards.map((reward, idx) => {
             const canRedeem = user?.ecoScore >= reward.pointsRequired;
             return (
-              <div key={reward.id} className="score-card p-6 animate-fade-in" style={{ animationDelay: `${idx * 0.1}s` }} data-testid={`reward-${idx}`}>
-                <div className="flex gap-4 mb-4">
+              <div key={reward.id} className="bg-white rounded-2xl shadow-sm p-4" style={{boxShadow: '0 1px 3px rgba(59,178,115,0.1)'}} data-testid={`reward-${idx}`}>
+                <div className="flex gap-3 mb-4">
                   <div className="flex-shrink-0">
-                    {getIcon(reward.icon)}
+                    <div className="w-16 h-16 rounded-xl flex items-center justify-center" style={{background: reward.icon === 'waves' ? '#dbeafe' : '#f0fdf4'}}>
+                      {getIcon(reward.icon)}
+                    </div>
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-green-800 mb-1" style={{fontFamily: 'Space Grotesk'}}>
+                    <h3 className="text-lg font-medium text-gray-900 mb-1">
                       {reward.name}
                     </h3>
-                    <p className="text-green-600 font-medium mb-2">{reward.ngoName}</p>
-                    <p className="text-green-700 text-sm mb-4">{reward.description}</p>
+                    <p className="text-sm text-gray-600 mb-2">{reward.ngoName}</p>
+                    <p className="text-sm text-gray-600 leading-relaxed">{reward.description}</p>
                   </div>
                 </div>
-                
-                <div className="flex items-center justify-between mt-4 pt-4 border-t border-green-200">
+
+                <div className="flex items-center justify-between pt-3 border-t border-gray-100">
                   <div>
-                    <p className="text-sm text-green-600 mb-1">Points Required</p>
-                    <p className="text-2xl font-bold text-green-800">{reward.pointsRequired}</p>
+                    <p className="text-xs text-gray-600 mb-0.5">Points Required</p>
+                    <p className="text-lg font-bold text-gray-900">{reward.pointsRequired}</p>
                   </div>
-                  <Button 
+                  <Button
                     onClick={() => handleRedeem(reward)}
                     disabled={!canRedeem}
-                    className={`${canRedeem ? 'btn-primary text-white' : 'bg-gray-300 text-gray-600'}`}
+                    className={`px-4 py-2 rounded-xl font-semibold transition-all ${
+                      canRedeem ? 'text-white' : 'text-gray-600'
+                    }`}
+                    style={{background: canRedeem ? '#3bb273' : '#e5e7eb'}}
                     data-testid={`redeem-reward-${idx}`}
                   >
-                    {canRedeem ? 'Redeem Now' : 'Not Enough Points'}
+                    {canRedeem ? 'Redeem' : 'Locked'}
                   </Button>
                 </div>
               </div>
