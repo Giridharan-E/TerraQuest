@@ -29,47 +29,52 @@ const Leaderboard = () => {
   };
 
   return (
-    <div className="min-h-screen" data-testid="leaderboard-page">
+    <div className="min-h-screen" style={{background: 'linear-gradient(to bottom, #f0fdf4, #ffffff)'}} data-testid="leaderboard-page">
       <Navigation />
-      
-      <div className="max-w-4xl mx-auto px-4 py-8">
-        <div className="glass-card p-8 mb-8 animate-fade-in">
-          <h1 className="text-4xl md:text-5xl font-bold text-green-800 mb-2" style={{fontFamily: 'Space Grotesk'}}>
+
+      <div className="max-w-md mx-auto px-4 md:px-6 py-6 pb-24 md:pb-6">
+        <div className="mb-6">
+          <h1 className="text-2xl font-semibold text-gray-900 mb-1">
             Global Leaderboard
           </h1>
-          <p className="text-green-700 text-base">Top sustainability champions worldwide</p>
+          <p className="text-sm text-gray-600 leading-relaxed">Top sustainability champions worldwide</p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {leaders.map((leader, idx) => (
-            <div 
-              key={leader.id} 
-              className={`score-card p-6 animate-fade-in ${leader.id === user?.id ? 'ring-2 ring-green-500' : ''}`}
-              style={{ animationDelay: `${idx * 0.1}s` }}
+            <div
+              key={leader.id}
+              className={`bg-white rounded-2xl shadow-sm p-4 ${
+                leader.id === user?.id ? 'ring-2' : ''
+              }`}
+              style={{
+                boxShadow: '0 1px 3px rgba(59,178,115,0.1)',
+                ringColor: leader.id === user?.id ? '#3bb273' : 'transparent'
+              }}
               data-testid={`leaderboard-rank-${idx + 1}`}
             >
-              <div className="flex items-center gap-6">
-                <div className="flex-shrink-0 w-16 text-center">
+              <div className="flex items-center gap-3">
+                <div className="flex-shrink-0 w-10 text-center">
                   {getRankIcon(idx + 1)}
-                  <p className="text-sm font-bold text-green-800 mt-1">#{idx + 1}</p>
+                  <p className="text-xs font-semibold text-gray-700 mt-1">#{idx + 1}</p>
                 </div>
-                
+
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-2xl font-bold text-green-900">{leader.name}</h3>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h3 className="text-base font-semibold text-gray-900">{leader.name}</h3>
                     {leader.id === user?.id && (
-                      <span className="px-3 py-1 bg-green-500 text-white text-xs font-semibold rounded-full">
+                      <span className="px-2 py-0.5 text-xs font-semibold rounded-full text-white" style={{background: '#3bb273'}}>
                         You
                       </span>
                     )}
                   </div>
-                  <p className="text-green-600 font-medium">{leader.level}</p>
-                  <p className="text-sm text-green-600 mt-1">{leader.totalScans} products scanned</p>
+                  <p className="text-sm text-gray-600">{leader.level}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{leader.totalScans} products scanned</p>
                 </div>
-                
+
                 <div className="text-right">
-                  <p className="text-4xl font-bold text-green-800">{leader.ecoScore}</p>
-                  <p className="text-sm text-green-600">EcoPoints</p>
+                  <p className="text-2xl font-bold text-gray-900">{leader.ecoScore}</p>
+                  <p className="text-xs text-gray-600">points</p>
                 </div>
               </div>
             </div>
