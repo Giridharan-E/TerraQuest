@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import axios from "axios";
@@ -13,8 +13,7 @@ import { Toaster } from "@/components/ui/sonner";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 export const API = `${BACKEND_URL}/api`;
 
-export const AuthContext = React.createContext();
-const React = require('react');
+export const AuthContext = createContext();
 
 function App() {
   const [user, setUser] = useState(null);
